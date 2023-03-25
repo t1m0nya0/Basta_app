@@ -6,5 +6,6 @@ from django.views.generic import ListView
 """class CourseHome(ListView):
     template_name = 'course/index.html'"""
 
-def coursehome(request):
+
+def course_home(request):
     return render(request, 'course/index.html')
