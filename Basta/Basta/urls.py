@@ -6,7 +6,7 @@ from Basta import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('basta/', include('course.urls')),
+    path('', include('course.urls')),
 ]
 
 if settings.DEBUG:
