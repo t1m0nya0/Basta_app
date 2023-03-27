@@ -1,10 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <h1>Home</h1>
-</body>
-</html>
+{% extends 'course/base.html' %}
+
+{% block content %}
+<h1>{{title}}</h1>
+
+<ul>
+	{% for c in courses %}
+	<li>
+		<h2>{{c.title}}</h2>
+		<p>{{c.description}}</p>
+		<hr>
+	</li>
+	{% endfor %}
+</ul>
+
+{% endblock %}
+
