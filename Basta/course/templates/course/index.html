@@ -1,17 +1,22 @@
 {% extends 'course/base.html' %}
 
 {% block content %}
-<h1>{{title}}</h1>
-
-<ul>
+<ul class="list-articles">
 	{% for c in courses %}
-	<li>
-		<h2>{{c.title}}</h2>
-		<p>{{c.description}}</p>
-		<hr>
-	</li>
+			<li><div class="article-panel">
+	<p class="first">Категория: {{c.category}}</p>
+	<p class="last">Дата: {{c.end_date|date:"d-m-Y"}}</p>
+			</div>
+				{% if c.photo %}
+					<p><img class="img-article-left thumb" src="{{ c.photo.url }}"></p>
+				{% endif %}
+				<h2>{{c.title}}</h2>
+	{% autoescape on %}
+	{{c.description|linebreaks|truncatewords:50}}
+	{% endautoescape %}
+			<div class="clear"></div>
+			<p class="link-read-post"><a href="{{ c.get_absolute_url }}">Описание курса</a></p>
+			</li>
 	{% endfor %}
 </ul>
-
 {% endblock %}
-
