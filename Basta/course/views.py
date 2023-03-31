@@ -11,17 +11,30 @@ menu = [{'title': "О сайте", 'url_name': 'about'},
         {'title': "Войти", 'url_name': 'login'}, ]
 
 
-def learn(request):
-    courses = Course.objects.all()
+class Learn(ListView):
+    model = Course
+    template_name = 'course/index.html'
+    context_object_name = 'courses'
 
-    context = {
-        'courses': courses,
-        'menu': menu,
-        'title': 'My learn',
-        'cat_selected': 0,
-    }
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['menu'] = menu
+        context['title'] = 'My learn'
+        context['cat_selected'] = 0
+        return context
 
-    return render(request, 'course/index.html', context=context)
+
+# def learn(request):
+#     courses = Course.objects.all()
+#
+#     context = {
+#         'courses': courses,
+#         'menu': menu,
+#         'title': 'My learn',
+#         'cat_selected': 0,
+#     }
+#
+#     return render(request, 'course/index.html', context=context)
 
 
 def catalog(request):
